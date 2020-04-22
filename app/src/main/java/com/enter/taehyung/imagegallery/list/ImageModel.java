@@ -1,5 +1,8 @@
 package com.enter.taehyung.imagegallery.list;
 
+import com.enter.taehyung.imagegallery.network.NetworkListener;
+import com.enter.taehyung.imagegallery.network.NetworkManager;
+
 public class ImageModel {
     private static final String TAG = ImageModel.class.getSimpleName();
 
@@ -9,5 +12,8 @@ public class ImageModel {
         mPresenter = listPresenter;
     }
 
-
+    public void requestData(NetworkListener listener) {
+        NetworkManager networkManager = NetworkManager.getInstance();
+        networkManager.requestData(listener);
+    }
 }

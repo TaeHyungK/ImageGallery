@@ -30,12 +30,13 @@ public class ImageLoader {
         RequestBuilder request = Glide.with(info.view.getContext()).load(info.url);
         RequestOptions options = new RequestOptions();
 
-        if (info.defaultResId != 0) {
-//            options.placeholder(info.defaultResId);
+        if (info.errorResId != 0) {
+            options.error(info.errorResId);
         }
 
         Log.d(TAG, "loadImage() called. url: " + info.url);
 
+        info.loadingView.setVisibility(View.VISIBLE);
         ValueAnimator loadingAnimator = AnimatorUtil.getInstance().makeRotationAnimator(info.loadingView, 500, 0, 360);
         loadingAnimator.setRepeatCount(ValueAnimator.INFINITE);
         loadingAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -45,6 +46,8 @@ public class ImageLoader {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target
                     , boolean isFirstResource) {
+                info.loadingView.setVisibility(View.GONE);
+                loadingAnimator.cancel();
 
                 return false;
             }

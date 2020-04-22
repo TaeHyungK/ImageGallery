@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.enter.taehyung.imagegallery.R;
 import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
+import com.enter.taehyung.imagegallery.data.ImageData;
 import com.enter.taehyung.imagegallery.list.ImageContract;
 import com.enter.taehyung.imagegallery.util.ImageLoader;
 import com.enter.taehyung.imagegallery.util.ImageRequest;
@@ -36,15 +37,17 @@ public class ImageViewHolder extends MainBaseViewHolder {
     public void bind(int pos, Object obj) {
         itemView.setTag(R.attr.key_grid_pos, pos);
 
-        if (obj instanceof String) {
-            String url = (String) obj;
-            Log.d(TAG, "bind() called." + pos + " | " + url);
+        if (obj instanceof ImageData) {
+            ImageData data = (ImageData) obj;
+            Log.d(TAG, "bind() called." + pos + " | " + data.getAlt() + " | " + data.getImagePath());
 
             mLoadingView.setBackgroundResource(R.drawable.loading_icon);
-            final ImageRequest req = new ImageRequest.Builder(mImageView, mLoadingView, url)
-                    .setDefaultResourceId(R.drawable.default_no_image)
+            final ImageRequest req = new ImageRequest.Builder(mImageView, mLoadingView, data.getImagePath())
+                    .seterrorResId(R.drawable.default_no_image)
                     .build();
             ImageLoader.loadImage(req);
+
+            itemView.setTag(R.attr.key_grid_title, data.getAlt());
         }
     }
 }

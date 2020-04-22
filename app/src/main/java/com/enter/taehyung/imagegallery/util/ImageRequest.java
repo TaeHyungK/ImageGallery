@@ -11,13 +11,13 @@ public class ImageRequest {
     View loadingView;
     public @NonNull
     String url;
-    public int defaultResId;
+    public int errorResId;
 
     public ImageRequest(Builder builder) {
         view = builder.view;
         loadingView = builder.loadingView;
         url = builder.url;
-        defaultResId = builder.defaultResId;
+        errorResId = builder.errorResId;
     }
 
     public static class Builder {
@@ -27,17 +27,17 @@ public class ImageRequest {
         View loadingView;
         private final @NonNull
         String url;
-        private int defaultResId;
+        private int errorResId;
 
         public Builder(View view, View loadingView, String url) {
             this.view = view;
             this.loadingView = loadingView;
             this.url = url;
-            this.defaultResId = 0;
+            this.errorResId = 0;
         }
 
-        public Builder setDefaultResourceId(int defaultResId) {
-            this.defaultResId = defaultResId;
+        public Builder seterrorResId(int errorResId) {
+            this.errorResId = errorResId;
             return this;
         }
 

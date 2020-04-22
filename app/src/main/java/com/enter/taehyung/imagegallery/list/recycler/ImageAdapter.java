@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.enter.taehyung.imagegallery.R;
 import com.enter.taehyung.imagegallery.base.MainBaseAdapter;
 import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
+import com.enter.taehyung.imagegallery.data.ImageData;
 import com.enter.taehyung.imagegallery.list.ImageContract;
 import com.enter.taehyung.imagegallery.util.Utils;
 
@@ -18,10 +19,10 @@ public class ImageAdapter extends MainBaseAdapter {
     private ImageContract.Presenter mPresenter;
 
     private View.OnClickListener mClickListener;
-    private ArrayList<String> mImageList;
+    private ArrayList<ImageData> mImageList;
 
 
-    public ImageAdapter(ImageContract.Presenter presenter, ArrayList<String> imageList) {
+    public ImageAdapter(ImageContract.Presenter presenter, ArrayList<ImageData> imageList) {
         this.mPresenter = presenter;
         this.mImageList = imageList;
     }

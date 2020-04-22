@@ -2,19 +2,22 @@ package com.enter.taehyung.imagegallery.list;
 
 import android.content.Context;
 
+import com.enter.taehyung.imagegallery.data.ImageData;
+import com.enter.taehyung.imagegallery.network.NetworkListener;
+
 import java.util.ArrayList;
 
 public class ImageContract {
     public interface View {
         // 레이아웃 초기화
-        // TODO jsoup 이용 이미지 불러온 후 View에 호출
-        void initLayout(ArrayList<String> imageList);
+        void initLayout(ArrayList<ImageData> imageList);
 
+        // get ApplicationContext
         Context getAppContext();
     }
 
     public interface Presenter {
-        // TODO jsoup 이용 이미지 파싱 처리
-        void getImageList(String url);
+        // request image data list
+        void requestImageList(NetworkListener listener);
     }
 }
