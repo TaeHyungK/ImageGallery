@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.enter.taehyung.imagegallery.Intro.IntroManager;
 import com.enter.taehyung.imagegallery.R;
 import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
 import com.enter.taehyung.imagegallery.data.ImageData;
@@ -99,6 +100,8 @@ public class ImageFragment extends Fragment implements ImageContract.View{
 
         ImageItemDecoration decor = new ImageItemDecoration();
         mRecyclerView.addItemDecoration(decor);
+
+        IntroManager.getInstance().hideIntro();
     }
 
     @Override

@@ -30,7 +30,7 @@ public class NetworkManager {
         return LazyHolder.INSTANCE;
     }
 
-    public static class LazyHolder {
+    private static class LazyHolder {
         public static final NetworkManager INSTANCE = new NetworkManager();
     }
 

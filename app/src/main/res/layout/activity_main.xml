@@ -16,4 +16,40 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/a_main_loading_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="a_main_loading_bg
+                                    ,a_main_loading_view
+                                    ,a_main_loading_full_bg"/>
+    <View
+        android:id="@+id/a_main_loading_full_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_f5f5f5"
+        />
+
+    <View
+        android:id="@+id/a_main_loading_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/splash_bg"
+        />
+
+    <View
+        android:id="@+id/a_main_loading_view"
+        android:layout_width="181.5dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="@+id/a_main_loading_bg"
+        app:layout_constraintEnd_toEndOf="@+id/a_main_loading_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/a_main_loading_bg"
+        android:background="@drawable/img_visualtxt_m"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
