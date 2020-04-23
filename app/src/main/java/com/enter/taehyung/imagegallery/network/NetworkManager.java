@@ -39,8 +39,8 @@ public class NetworkManager {
             @Override
             public void run() {
                 ArrayList<ImageData> imageList = new ArrayList<>();
+                Bundle bundle = new Bundle();
                 try {
-                    Bundle bundle = new Bundle();
                     Connection.Response response = Jsoup.connect(TARGET_URL).execute();
 
                     if (response.statusCode() != NetworkConst.STATUS.OK) {
@@ -66,6 +66,7 @@ public class NetworkManager {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    // TODO bundle에 Exception 발생 담아서 retry 3회까지 하도록 수정 필요.
                 }
             }
         }.start();

@@ -90,6 +90,7 @@ public class ImageFragment extends Fragment implements ImageContract.View{
     @Override
     public void initLayout(ArrayList<ImageData> imageList) {
         Log.d(TAG, "initLayout() called. size: " + imageList.size());
+        IntroManager.getInstance().hideIntro();
 
         GridLayoutManager layoutManager = new GridLayoutManager(getAppContext(), ImageConst.SPAN_COUNT.BIG, RecyclerView.VERTICAL, false);
         mAdapter = new ImageAdapter(mPresenter, imageList);
@@ -100,8 +101,6 @@ public class ImageFragment extends Fragment implements ImageContract.View{
 
         ImageItemDecoration decor = new ImageItemDecoration();
         mRecyclerView.addItemDecoration(decor);
-
-        IntroManager.getInstance().hideIntro();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.enter.taehyung.imagegallery.Intro;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.constraintlayout.widget.Group;
@@ -33,6 +34,7 @@ public class IntroManager {
     }
 
     public void hideIntro() {
+        Log.d(TAG, "hideIntro() called.");
         mLoadingGroup.setVisibility(View.GONE);
     }
 }
