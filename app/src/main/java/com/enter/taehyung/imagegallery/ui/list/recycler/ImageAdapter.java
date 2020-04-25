@@ -12,9 +12,13 @@ import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
 import com.enter.taehyung.imagegallery.data.ImageData;
 import com.enter.taehyung.imagegallery.ui.list.ImageConst;
 import com.enter.taehyung.imagegallery.ui.list.ImageContract;
+import com.enter.taehyung.imagegallery.util.OriginalComparator;
+import com.enter.taehyung.imagegallery.util.TitleComparator;
 import com.enter.taehyung.imagegallery.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ImageAdapter extends MainBaseAdapter {
     private static final String TAG = ImageAdapter.class.getSimpleName();
@@ -24,12 +28,14 @@ public class ImageAdapter extends MainBaseAdapter {
     private View.OnClickListener mClickListener;
     private ArrayList<ImageData> mImageList;
     private @ImageConst.LAYOUT_TYPE int mViewType;
+    private @ImageConst.SORT_TYPE int mSortType;
 
 
     public ImageAdapter(ImageContract.Presenter presenter, ArrayList<ImageData> imageList, @ImageConst.LAYOUT_TYPE int viewType) {
         this.mPresenter = presenter;
         this.mImageList = imageList;
         this.mViewType = viewType;
+        mSortType = ImageConst.SORT_TYPE.ORIGINAL;
     }
 
     @NonNull
@@ -73,6 +79,15 @@ public class ImageAdapter extends MainBaseAdapter {
 
     public void setViewType(@ImageConst.LAYOUT_TYPE int viewType) {
         this.mViewType = viewType;
+    }
+
+    public void switchSortType() {
+        mSortType = mSortType == ImageConst.SORT_TYPE.ORIGINAL ? ImageConst.SORT_TYPE.ATOZ : ImageConst.SORT_TYPE.ORIGINAL;
+        Comparator<ImageData> comparator = mSortType == ImageConst.SORT_TYPE.ORIGINAL
+                ? new OriginalComparator() : new TitleComparator();
+
+        Collections.sort(mImageList, comparator);
+        notifyDataSetChanged();
     }
 
     /**

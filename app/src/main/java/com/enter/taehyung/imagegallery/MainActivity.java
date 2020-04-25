@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
                     ((ImageFragment) mFragment).changeViewType(ImageConst.LAYOUT_TYPE.STAGGERED);
                 }
                 return true;
+            case R.id.action_sort:
+                if (mFragment instanceof ImageFragment) {
+                    ((ImageFragment) mFragment).switchSortType();
+                }
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

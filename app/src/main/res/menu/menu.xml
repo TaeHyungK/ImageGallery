@@ -12,4 +12,10 @@
         android:icon="@drawable/baseline_looks_two_white"
         android:title="@string/looks_two_title"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/baseline_sort_by_alpha_white"
+        android:title="정렬 설정 변경"
+        app:showAsAction="ifRoom"/>
 </menu>

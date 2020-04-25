@@ -123,6 +123,15 @@ public class ImageFragment extends Fragment implements ImageContract.View{
     }
 
     @Override
+    public void switchSortType() {
+        if (mAdapter == null || mRecyclerView == null) {
+            Log.d(TAG, "changeSortType() mAdapter or mRecyclerView is null. do nothing.");
+            return;
+        }
+        mAdapter.switchSortType();
+    }
+
+    @Override
     public void requestData() {
         if (mPresenter != null) {
             mPresenter.requestImageList();

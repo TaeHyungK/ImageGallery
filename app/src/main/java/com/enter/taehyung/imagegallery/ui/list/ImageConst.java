@@ -25,4 +25,12 @@ public class ImageConst {
         int DEFAULT = 100;
         int STAGGERED = 101;
     }
+
+    @IntDef({SORT_TYPE.ORIGINAL,
+            SORT_TYPE.ATOZ
+    })
+    public @interface SORT_TYPE {
+        int ORIGINAL = 200;
+        int ATOZ = 201;
+    }
 }

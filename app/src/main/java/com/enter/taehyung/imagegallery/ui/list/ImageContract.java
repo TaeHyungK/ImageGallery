@@ -12,6 +12,8 @@ public class ImageContract {
         // RecyclerView type change
         void changeViewType(@ImageConst.LAYOUT_TYPE int viewType);
 
+        void switchSortType();
+
         // data request
         void requestData();
     }
