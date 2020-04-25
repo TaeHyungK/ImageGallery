@@ -2,5 +2,6 @@
 <resources>
     <!-- view setTag key id -->
     <attr name="key_grid_pos" format="integer" />
+    <attr name="key_grid_idx" format="integer" />
     <attr name="key_grid_title" format="reference" />
 </resources>

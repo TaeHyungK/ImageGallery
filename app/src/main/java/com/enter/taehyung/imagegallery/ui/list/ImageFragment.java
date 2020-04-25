@@ -141,15 +141,10 @@ public class ImageFragment extends Fragment implements ImageContract.View{
     private View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int pos = (int) view.getTag(R.attr.key_grid_pos);
+            int idx = (int) view.getTag(R.attr.key_grid_idx);
             String title = (String) view.getTag(R.attr.key_grid_title);
 
-            MainBaseViewHolder baseHolder = (MainBaseViewHolder) mRecyclerView.findViewHolderForAdapterPosition(pos);
-            if (baseHolder instanceof ImageDefaultViewHolder) {
-                ImageDefaultViewHolder holder = (ImageDefaultViewHolder) baseHolder;
-
-                Toast.makeText(getContext(), "[" + pos + "] " + title + " 클릭", Toast.LENGTH_SHORT).show();
-            }
+            Utils.showToast("[" + idx + "]" + title);
         }
     };
 }

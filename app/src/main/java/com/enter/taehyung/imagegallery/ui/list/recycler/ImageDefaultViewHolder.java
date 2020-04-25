@@ -47,6 +47,7 @@ public class ImageDefaultViewHolder extends MainBaseViewHolder {
                     .build();
             ImageLoader.loadImage(req);
 
+            itemView.setTag(R.attr.key_grid_idx, data.getIdx());
             itemView.setTag(R.attr.key_grid_title, data.getTitle());
         }
     }

@@ -45,13 +45,11 @@ public class ImageAdapter extends MainBaseAdapter {
         if (ImageConst.LAYOUT_TYPE.STAGGERED == viewType) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.i_list_staggered, parent, false);
             ImageStaggeredViewHolder holder = new ImageStaggeredViewHolder(view, mPresenter);
-            holder.itemView.setOnClickListener(mClickListener);
 
             return holder;
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.i_list_default, parent, false);
             ImageDefaultViewHolder holder = new ImageDefaultViewHolder(view, mPresenter);
-            holder.itemView.setOnClickListener(mClickListener);
 
             return holder;
         }
@@ -61,6 +59,7 @@ public class ImageAdapter extends MainBaseAdapter {
     public void onBindViewHolder(@NonNull MainBaseViewHolder holder, int position) {
         Object object = mImageList.get(position);
         holder.bind(position, object);
+        holder.itemView.setOnClickListener(mClickListener);
     }
 
     @Override
