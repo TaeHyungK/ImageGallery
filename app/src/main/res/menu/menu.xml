@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_looks_one"
+        android:icon="@drawable/baseline_looks_one_white"
+        android:title="@string/looks_one_title"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_looks_two"
+        android:icon="@drawable/baseline_looks_two_white"
+        android:title="@string/looks_two_title"
+        app:showAsAction="ifRoom"/>
+</menu>

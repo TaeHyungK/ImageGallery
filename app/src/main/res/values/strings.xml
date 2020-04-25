@@ -1,6 +1,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">ImageGallery</string>
 
+    <string name="looks_one_title">격자로 보기</string>
+    <string name="looks_two_title">크기대로 보기</string>
+
     <string name="toast_network_failed">[<xliff:g id="status_code">%d</xliff:g>] 네트워크 상태 확인 후 앱을 재시작해주세요.</string>
     <string name="toast_image_empty">[<xliff:g id="status_code">%d</xliff:g>] 이미지가 없습니다.</string>
 </resources>

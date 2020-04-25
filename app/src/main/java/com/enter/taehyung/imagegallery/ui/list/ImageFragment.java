@@ -99,9 +99,14 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         super.onDestroyView();
     }
 
-    private void changeViewType(@ImageConst.LAYOUT_TYPE int viewType) {
-        if (mAdapter == null) {
-            Log.d(TAG, "changeViewType() mAdapter is null.");
+    public void changeViewType(@ImageConst.LAYOUT_TYPE int viewType) {
+        if (mAdapter == null || mRecyclerView == null) {
+            Log.d(TAG, "changeViewType() mAdapter or mRecyclerView is null. do nothing.");
+            return;
+        }
+
+        if (mAdapter.getViewType() == viewType) {
+            Log.d(TAG, "changeViewType() ViewType is same type. do nothing. ");
             return;
         }
 

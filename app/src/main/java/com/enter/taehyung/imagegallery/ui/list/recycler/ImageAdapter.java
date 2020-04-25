@@ -67,6 +67,10 @@ public class ImageAdapter extends MainBaseAdapter {
         return Utils.isListEmpty(mImageList) ? 0 : mImageList.size();
     }
 
+    public int getViewType() {
+        return mViewType;
+    }
+
     public void setViewType(@ImageConst.LAYOUT_TYPE int viewType) {
         this.mViewType = viewType;
     }
