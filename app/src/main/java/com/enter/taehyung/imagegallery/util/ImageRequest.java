@@ -4,6 +4,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Glide 이미지 요청 시 필요 데이터 class
+ */
 public class ImageRequest {
     public @NonNull
     View view;

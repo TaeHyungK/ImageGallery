@@ -80,6 +80,12 @@ public class ImageAdapter extends MainBaseAdapter {
         this.mViewType = viewType;
     }
 
+    /**
+     * 정렬 설정 스위칭 처리
+     *
+     * ORIGINAL - 데이터순 정렬
+     * ATOZ - Title 기준 오름차순 정렬
+     */
     public void switchSortType() {
         mSortType = mSortType == ImageConst.SORT_TYPE.ORIGINAL ? ImageConst.SORT_TYPE.ATOZ : ImageConst.SORT_TYPE.ORIGINAL;
         Comparator<ImageData> comparator = mSortType == ImageConst.SORT_TYPE.ORIGINAL

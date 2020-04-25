@@ -8,14 +8,14 @@ public class ImageConst {
     public static final int ITEM_EDGE_PADDING_Y = Utils.changeDP2Pixel(2.5f);
     public static final int ITEM_MIDDLE_MARGIN = Utils.changeDP2Pixel(1f);
 
-    @IntDef({SPAN_COUNT.BIG
-            , SPAN_COUNT.HALF
-            , SPAN_COUNT.THIRD
+    @IntDef({SPAN_COUNT.ONE
+            , SPAN_COUNT.TWO
+            , SPAN_COUNT.THREE
     })
     public @interface SPAN_COUNT {
-        int BIG = 1;
-        int HALF = 2;
-        int THIRD = 3;
+        int ONE = 1;
+        int TWO = 2;
+        int THREE = 3;
     }
 
     @IntDef({LAYOUT_TYPE.DEFAULT,

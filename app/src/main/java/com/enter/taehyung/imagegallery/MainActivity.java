@@ -81,12 +81,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addClickListener() {
+    /**
+     * 스플래시 화면 set OnClickListner
+     */
+    public void setClickListener() {
         mRootLayout.setOnClickListener(mClickListener);
     }
 
+    /**
+     * 스플래시 화면 remove OnClickListener;
+     */
     public void removeClickListener() {
-        Log.d(TAG, "removeClickListener() called.");
         mRootLayout.setOnClickListener(null);
     }
 

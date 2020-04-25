@@ -30,6 +30,11 @@ public class NetworkManager {
         public static final NetworkManager INSTANCE = new NetworkManager();
     }
 
+    /**
+     * Jsoup을 통해 이미지 데이터 크롤링
+     *
+     * @param listener NetworkListener
+     */
     public void requestData(NetworkListener listener) {
         new Thread() {
             @Override

@@ -4,6 +4,9 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+/**
+ * 애니메이션 처리를 위한 ValueAnimator 반환 Util
+ */
 public class AnimatorUtil {
     private AnimatorUtil() {
 

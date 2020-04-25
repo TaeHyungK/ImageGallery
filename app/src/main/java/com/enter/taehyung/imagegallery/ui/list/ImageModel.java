@@ -20,6 +20,9 @@ public class ImageModel {
         mPresenter = listPresenter;
     }
 
+    /**
+     * 이미지 데이터 크롤링 요청
+     */
     public void requestData() {
         NetworkManager networkManager = NetworkManager.getInstance();
         networkManager.requestData(mNetworkListener);

@@ -68,7 +68,7 @@ public class ImageFragment extends Fragment implements ImageContract.View{
             Utils.showToast(getString(R.string.toast_network_failed, stateCode));
 
             if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).addClickListener();
+                ((MainActivity) getActivity()).setClickListener();
             }
             return;
         }
@@ -81,8 +81,8 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         Log.d(TAG, "initLayout() called. size: " + imageList.size());
         IntroManager.getInstance().hideIntro();
 
-        mGridLayoutManager = new GridLayoutManager(getActivity(), ImageConst.SPAN_COUNT.THIRD, RecyclerView.VERTICAL, false);
-        mStaggeredLayoutManager= new StaggeredGridLayoutManager(ImageConst.SPAN_COUNT.THIRD, RecyclerView.VERTICAL);
+        mGridLayoutManager = new GridLayoutManager(getActivity(), ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL, false);
+        mStaggeredLayoutManager= new StaggeredGridLayoutManager(ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL);
 
         mAdapter = new ImageAdapter(mPresenter, imageList, ImageConst.LAYOUT_TYPE.DEFAULT);
         mAdapter.setListener(mClickListener);

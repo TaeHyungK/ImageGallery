@@ -1,7 +1,6 @@
 package com.enter.taehyung.imagegallery.util;
 
 import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +19,17 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
+/**
+ * Glide 이미지 요청을 위한 Loader
+ */
 public class ImageLoader {
     private static final String TAG = ImageLoader.class.getSimpleName();
 
+    /**
+     * 이미지 요청
+     *
+     * @param info ImageRequest
+     */
     public static void loadImage(@NonNull final ImageRequest info) {
         if(TextUtils.isEmpty(info.url)){
             Log.d(TAG, "loadImage() called. url is empty");
@@ -65,7 +72,6 @@ public class ImageLoader {
             }
         });
 
-        // TODO deprecated 메소드 수정 필요
         options.transform(new FitCenter(), new RoundedCorners(Utils.changeDP2Pixel(5)));
         request.apply(options);
         request.into((ImageView) info.view);
