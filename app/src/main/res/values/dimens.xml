@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_loading_view_width">181.5dp</dimen>
+    <dimen name="main_loading_view_height">50dp</dimen>
+    <dimen name="main_loading_view_margin_top">100dp</dimen>
+    <dimen name="main_loading_view_margin_bottom">10dp</dimen>
+
+    <dimen name="view_type_default_height">130dp</dimen>
+    <dimen name="view_type_default_padding_left">1dp</dimen>
+    <dimen name="view_type_default_padding_right">1dp</dimen>
+
+    <dimen name="item_loading_view_width">40dp</dimen>
+    <dimen name="item_loading_view_height">40dp</dimen>
+</resources>

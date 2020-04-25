@@ -4,27 +4,37 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ImageData implements Parcelable {
-    private String alt;
+    private int idx; // origin sort 를 위해 저장 처리 필요.
+    private String title;
     private String imagePath;
 
     public ImageData() {
     }
 
     public ImageData(Parcel in) {
-        this.alt = in.readString();
+        this.idx = in.readInt();
+        this.title = in.readString();
         this.imagePath = in.readString();
     }
 
-    public String getAlt() {
-        return alt;
+    public int getIdx() {
+        return idx;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getImagePath() {
         return imagePath;
     }
 
-    public void setAlt(String alt) {
-        this.alt = alt;
+    public void setIdx(int idx) {
+        this.idx = idx;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setImagePath(String imagePath) {
@@ -38,7 +48,8 @@ public class ImageData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.alt);
+        dest.writeInt(this.idx);
+        dest.writeString(this.title);
         dest.writeString(this.imagePath);
     }
 

@@ -1,25 +1,29 @@
-package com.enter.taehyung.imagegallery.list;
+package com.enter.taehyung.imagegallery.ui.list;
 
-import android.content.Context;
+import com.enter.taehyung.imagegallery.data.ImageData;
 
-import com.enter.taehyung.imagegallery.network.NetworkListener;
+import java.util.ArrayList;
 
 public class ImagePresenter implements ImageContract.Presenter {
     private static final String TAG = ImagePresenter.class.getSimpleName();
 
-    private Context mContext;
     private ImageModel mModel;
     private ImageContract.View mView;
 
     public ImagePresenter(ImageContract.View view) {
         mView = view;
         mModel = new ImageModel(this);
-
-        mContext = mView.getAppContext();
     }
 
     @Override
-    public void requestImageList(NetworkListener listener) {
-        mModel.requestData(listener);
+    public void requestImageList() {
+        mModel.requestData();
     }
+
+    @Override
+    public void setImageList(int stateCode, ArrayList<ImageData> imageList) {
+        mView.initLayout(stateCode, imageList);
+    }
+
+
 }

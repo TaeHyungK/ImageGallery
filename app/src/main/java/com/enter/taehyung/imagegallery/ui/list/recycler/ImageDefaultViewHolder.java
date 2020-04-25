@@ -1,0 +1,53 @@
+package com.enter.taehyung.imagegallery.ui.list.recycler;
+
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.enter.taehyung.imagegallery.R;
+import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
+import com.enter.taehyung.imagegallery.data.ImageData;
+import com.enter.taehyung.imagegallery.ui.list.ImageContract;
+import com.enter.taehyung.imagegallery.util.ImageLoader;
+import com.enter.taehyung.imagegallery.util.ImageRequest;
+
+import butterknife.BindView;
+
+public class ImageDefaultViewHolder extends MainBaseViewHolder {
+    private static final String TAG = ImageDefaultViewHolder.class.getSimpleName();
+
+    private ImageContract.Presenter mPresenter;
+
+    @BindView(R.id.i_list_default_root)
+    protected ConstraintLayout mRootLayout;
+    @BindView(R.id.i_list_default_image_view)
+    protected ImageView mImageView;
+    @BindView(R.id.i_list_default_loading_view)
+    protected View mLoadingView;
+
+    public ImageDefaultViewHolder(@NonNull View itemView, ImageContract.Presenter presenter) {
+        super(itemView);
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void bind(int pos, Object obj) {
+        itemView.setTag(R.attr.key_grid_pos, pos);
+
+        if (obj instanceof ImageData) {
+            ImageData data = (ImageData) obj;
+            Log.d(TAG, "bind() called." + pos + " | " + data.getTitle() + " | " + data.getImagePath());
+
+            mLoadingView.setBackgroundResource(R.drawable.loading_icon);
+            final ImageRequest req = new ImageRequest.Builder(mImageView, mLoadingView, data.getImagePath())
+                    .seterrorResId(R.drawable.default_no_image)
+                    .build();
+            ImageLoader.loadImage(req);
+
+            itemView.setTag(R.attr.key_grid_title, data.getTitle());
+        }
+    }
+}

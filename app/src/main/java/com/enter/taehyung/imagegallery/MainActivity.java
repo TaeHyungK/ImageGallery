@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.enter.taehyung.imagegallery.Intro.IntroManager;
-import com.enter.taehyung.imagegallery.list.ImageFragment;
+import com.enter.taehyung.imagegallery.ui.list.ImageFragment;
 import com.enter.taehyung.imagegallery.util.Utils;
 
 import butterknife.BindView;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Utils.setDensity(this);
+        Utils.setDensity(getApplicationContext());
         IntroManager.getInstance().init(this);
 
         mFragmentManager = getSupportFragmentManager();

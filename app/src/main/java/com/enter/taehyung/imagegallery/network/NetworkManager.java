@@ -52,9 +52,14 @@ public class NetworkManager {
                     Document doc = response.parse();
                     Elements elements = doc.select(NetworkConst.PARSER_QUERY.DIV_PARENT).select(NetworkConst.PARSER_QUERY.DIV_CHILD);
 
+                    int idx = 0;
                     for (Element element : elements) {
                         ImageData data = new ImageData();
-                        data.setAlt(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_ALT));
+                        data.setIdx(idx++);
+                        Elements textWrapper = element.getElementsByClass("text-wrapper");
+                        if (textWrapper != null) {
+                            data.setTitle(textWrapper.text());
+                        }
                         data.setImagePath(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_SRC));
 
                         imageList.add(data);
@@ -70,83 +75,5 @@ public class NetworkManager {
                 }
             }
         }.start();
-    }
-
-    private Handler mNetworkHandler = new Handler() {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            switch (msg.what) {
-                case NetworkConst.NETOWRK_MESSAGE_WHAT.REQUEST_IMAGE_LIST:
-                    Object listenerObject = msg.obj;
-                    if (!(listenerObject instanceof NetworkListener)) {
-                        return;
-                    }
-
-                    NetworkListener listener = (NetworkListener) listenerObject;
-
-                    ArrayList<ImageData> imageList = new ArrayList<>();
-                    try {
-                        Bundle bundle = new Bundle();
-                        Connection.Response response = Jsoup.connect(TARGET_URL).execute();
-
-                        if (response.statusCode() != NetworkConst.STATUS.OK) {
-                            Log.d(TAG, "getHtmlData() status is not OK.");
-                            listener.onResult(bundle);
-                            return;
-                        }
-
-                        Document doc = response.parse();
-                        Elements elements = doc.select(NetworkConst.PARSER_QUERY.DIV_PARENT).select(NetworkConst.PARSER_QUERY.DIV_CHILD);
-
-                        for (Element element : elements) {
-                            ImageData data = new ImageData();
-                            data.setAlt(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_ALT));
-                            data.setImagePath(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_SRC));
-
-                            imageList.add(data);
-                        }
-
-                        bundle.putParcelableArrayList(NetworkConst.BUNDLE_KEY.DATA_IMAGE_LIST, imageList);
-                        listener.onResult(bundle);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
-            }
-        }
-    };
-
-    private ArrayList<ImageData> getImageList(NetworkListener listener) {
-        ArrayList<ImageData> imageList = new ArrayList<>();
-        try {
-            Bundle bundle = new Bundle();
-            Connection.Response response = Jsoup.connect(TARGET_URL).execute();
-
-            if (response.statusCode() != NetworkConst.STATUS.OK) {
-                Log.d(TAG, "getHtmlData() status is not OK.");
-                listener.onResult(bundle);
-                return null;
-            }
-
-            Document doc = response.parse();
-            Elements elements = doc.select(NetworkConst.PARSER_QUERY.DIV_PARENT).select(NetworkConst.PARSER_QUERY.DIV_CHILD);
-
-            for (Element element : elements) {
-                ImageData data = new ImageData();
-                data.setAlt(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_ALT));
-                data.setImagePath(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_SRC));
-
-                imageList.add(data);
-            }
-
-            bundle.putParcelableArrayList(NetworkConst.BUNDLE_KEY.DATA_IMAGE_LIST, imageList);
-            listener.onResult(bundle);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 }

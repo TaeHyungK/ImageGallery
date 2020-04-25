@@ -2,11 +2,14 @@ package com.enter.taehyung.imagegallery.util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class Utils {
     private static final String TAG = Utils.class.getSimpleName();
+
+    private static Context mContext;
 
     /********************************************************************************************************
      * DENSITY
@@ -14,6 +17,7 @@ public class Utils {
     private static float mDensity;
 
     public static void setDensity(Context context) {
+        mContext = context;
         mDensity = context.getResources().getDisplayMetrics().density;
         Log.d(TAG, "setDensity() density: " + mDensity);
     }
@@ -31,5 +35,9 @@ public class Utils {
             return true;
         }
         return false;
+    }
+
+    public static void showToast(String desc) {
+        Toast.makeText(mContext, desc, Toast.LENGTH_SHORT).show();
     }
 }

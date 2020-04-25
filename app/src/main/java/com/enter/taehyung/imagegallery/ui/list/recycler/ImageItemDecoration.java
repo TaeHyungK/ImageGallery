@@ -1,11 +1,11 @@
-package com.enter.taehyung.imagegallery.list.recycler;
+package com.enter.taehyung.imagegallery.ui.list.recycler;
 
 import android.graphics.Rect;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.enter.taehyung.imagegallery.list.ImageConst;
+import com.enter.taehyung.imagegallery.ui.list.ImageConst;
 
 public class ImageItemDecoration extends RecyclerView.ItemDecoration {
     private int mSpace = ImageConst.ITEM_MIDDLE_MARGIN;

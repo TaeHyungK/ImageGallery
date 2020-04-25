@@ -1,34 +1,35 @@
-package com.enter.taehyung.imagegallery.list.recycler;
+package com.enter.taehyung.imagegallery.ui.list.recycler;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.enter.taehyung.imagegallery.R;
 import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
 import com.enter.taehyung.imagegallery.data.ImageData;
-import com.enter.taehyung.imagegallery.list.ImageContract;
+import com.enter.taehyung.imagegallery.ui.list.ImageContract;
 import com.enter.taehyung.imagegallery.util.ImageLoader;
 import com.enter.taehyung.imagegallery.util.ImageRequest;
 
 import butterknife.BindView;
 
-public class ImageViewHolder extends MainBaseViewHolder {
-    private static final String TAG = ImageViewHolder.class.getSimpleName();
+public class ImageStaggeredViewHolder extends MainBaseViewHolder {
+    private static final String TAG = ImageStaggeredViewHolder.class.getSimpleName();
 
     private ImageContract.Presenter mPresenter;
 
-    @BindView(R.id.v_list_holder_root)
-    protected ConstraintLayout mRootLayout;
-    @BindView(R.id.v_list_holder_image_view)
+    @BindView(R.id.i_list_staggered_root)
+    protected CardView mRootLayout;
+    @BindView(R.id.i_list_staggered_image_view)
     protected ImageView mImageView;
-    @BindView(R.id.v_list_holder_loading_view)
+    @BindView(R.id.i_list_staggered_loading_view)
     protected View mLoadingView;
 
-    public ImageViewHolder(@NonNull View itemView, ImageContract.Presenter presenter) {
+    public ImageStaggeredViewHolder(@NonNull View itemView, ImageContract.Presenter presenter) {
         super(itemView);
         mPresenter = presenter;
     }
@@ -39,7 +40,7 @@ public class ImageViewHolder extends MainBaseViewHolder {
 
         if (obj instanceof ImageData) {
             ImageData data = (ImageData) obj;
-            Log.d(TAG, "bind() called." + pos + " | " + data.getAlt() + " | " + data.getImagePath());
+            Log.d(TAG, "bind() called." + pos + " | " + data.getTitle() + " | " + data.getImagePath());
 
             mLoadingView.setBackgroundResource(R.drawable.loading_icon);
             final ImageRequest req = new ImageRequest.Builder(mImageView, mLoadingView, data.getImagePath())
@@ -47,7 +48,7 @@ public class ImageViewHolder extends MainBaseViewHolder {
                     .build();
             ImageLoader.loadImage(req);
 
-            itemView.setTag(R.attr.key_grid_title, data.getAlt());
+            itemView.setTag(R.attr.key_grid_title, data.getTitle());
         }
     }
 }
