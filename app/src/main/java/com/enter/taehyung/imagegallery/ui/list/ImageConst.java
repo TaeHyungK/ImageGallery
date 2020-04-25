@@ -6,7 +6,7 @@ import com.enter.taehyung.imagegallery.util.Utils;
 
 public class ImageConst {
     public static final int ITEM_EDGE_PADDING_Y = Utils.changeDP2Pixel(2.5f);
-    public static final int ITEM_MIDDLE_MARGIN = Utils.changeDP2Pixel(1f);
+    public static final int ITEM_SPACE = Utils.changeDP2Pixel(1f);
 
     @IntDef({SPAN_COUNT.ONE
             , SPAN_COUNT.TWO
