@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.enter.taehyung.imagegallery.Intro.IntroManager;
+import com.enter.taehyung.imagegallery.MainActivity;
 import com.enter.taehyung.imagegallery.R;
 import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
 import com.enter.taehyung.imagegallery.data.ImageData;
@@ -58,13 +59,17 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         mView = this;
         mPresenter = new ImagePresenter(this);
 
-        mPresenter.requestImageList();
+        requestData();
     }
 
     @Override
     public void initLayout(int stateCode, ArrayList<ImageData> imageList) {
         if (stateCode != NetworkConst.STATUS.OK) {
             Utils.showToast(getString(R.string.toast_network_failed, stateCode));
+
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).addClickListener();
+            }
             return;
         }
 
@@ -99,6 +104,7 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         super.onDestroyView();
     }
 
+    @Override
     public void changeViewType(@ImageConst.LAYOUT_TYPE int viewType) {
         if (mAdapter == null || mRecyclerView == null) {
             Log.d(TAG, "changeViewType() mAdapter or mRecyclerView is null. do nothing.");
@@ -114,6 +120,13 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         mRecyclerView.setLayoutManager(viewType == ImageConst.LAYOUT_TYPE.DEFAULT ? mGridLayoutManager : mStaggeredLayoutManager);
 
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void requestData() {
+        if (mPresenter != null) {
+            mPresenter.requestImageList();
+        }
     }
 
     private View.OnClickListener mClickListener = new View.OnClickListener() {

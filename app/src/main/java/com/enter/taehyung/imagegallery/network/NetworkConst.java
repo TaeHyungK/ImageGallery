@@ -4,6 +4,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.StringDef;
 
 public class NetworkConst {
+    public static final int TIMEOUT_MS = 10 * 1000;
 
     @IntDef({
             STATUS.OK
@@ -21,6 +22,13 @@ public class NetworkConst {
         String DATA_IMAGE_LIST = "DATA_IMAGE_LIST";
     }
 
+    @IntDef({
+            BUNDLE_TYPE.NETWORK_EXCEPTION
+    })
+    public @interface BUNDLE_TYPE {
+        int NETWORK_EXCEPTION = 5000;
+    }
+
     @StringDef({
             PARSER_QUERY.DIV_PARENT,
             PARSER_QUERY.DIV_CHILD,
@@ -34,12 +42,5 @@ public class NetworkConst {
         String IMG_TAG = "img";
         String IMG_ATTR_ALT = "alt";
         String IMG_ATTR_SRC = "data-src";
-    }
-
-    @IntDef({
-            NETOWRK_MESSAGE_WHAT.REQUEST_IMAGE_LIST
-    })
-    public @interface NETOWRK_MESSAGE_WHAT {
-        int REQUEST_IMAGE_LIST = 10000;
     }
 }

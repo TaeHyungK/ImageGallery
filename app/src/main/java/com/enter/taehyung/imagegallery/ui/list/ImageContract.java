@@ -8,6 +8,12 @@ public class ImageContract {
     public interface View {
         // 레이아웃 초기화
         void initLayout(int stateCode, ArrayList<ImageData> imageList);
+
+        // RecyclerView type change
+        void changeViewType(@ImageConst.LAYOUT_TYPE int viewType);
+
+        // data request
+        void requestData();
     }
 
     public interface Presenter {

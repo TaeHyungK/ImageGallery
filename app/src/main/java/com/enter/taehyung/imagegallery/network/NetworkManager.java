@@ -1,11 +1,7 @@
 package com.enter.taehyung.imagegallery.network;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
 
 import com.enter.taehyung.imagegallery.data.ImageData;
 
@@ -41,7 +37,7 @@ public class NetworkManager {
                 ArrayList<ImageData> imageList = new ArrayList<>();
                 Bundle bundle = new Bundle();
                 try {
-                    Connection.Response response = Jsoup.connect(TARGET_URL).execute();
+                    Connection.Response response = Jsoup.connect(TARGET_URL).timeout(NetworkConst.TIMEOUT_MS).execute();
 
                     if (response.statusCode() != NetworkConst.STATUS.OK) {
                         Log.d(TAG, "getHtmlData() status is not OK.");
@@ -71,7 +67,8 @@ public class NetworkManager {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // TODO bundle에 Exception 발생 담아서 retry 3회까지 하도록 수정 필요.
+                    bundle.putInt(NetworkConst.BUNDLE_KEY.STATE_CODE, NetworkConst.BUNDLE_TYPE.NETWORK_EXCEPTION);
+                    listener.onResult(bundle);
                 }
             }
         }.start();

@@ -2,14 +2,17 @@ package com.enter.taehyung.imagegallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.enter.taehyung.imagegallery.Intro.IntroManager;
@@ -23,6 +26,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    @BindView(R.id.a_main_root)
+    ConstraintLayout mRootLayout;
     @BindView(R.id.a_main_frame)
     FrameLayout mFrameLayout;
     @BindView(R.id.a_main_loading_group)
@@ -70,4 +75,27 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void addClickListener() {
+        mRootLayout.setOnClickListener(mClickListener);
+    }
+
+    public void removeClickListener() {
+        Log.d(TAG, "removeClickListener() called.");
+        mRootLayout.setOnClickListener(null);
+    }
+
+    private View.OnClickListener mClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.a_main_root:
+                    if (mFragment instanceof ImageFragment) {
+                        ((ImageFragment) mFragment).requestData();
+                        removeClickListener();
+                    }
+                    break;
+            }
+        }
+    };
 }
