@@ -11,14 +11,11 @@ public class ImageRequest {
     public @NonNull
     View view;
     public @NonNull
-    View loadingView;
-    public @NonNull
     String url;
     public int errorResId;
 
     public ImageRequest(Builder builder) {
         view = builder.view;
-        loadingView = builder.loadingView;
         url = builder.url;
         errorResId = builder.errorResId;
     }
@@ -27,19 +24,16 @@ public class ImageRequest {
         private final @NonNull
         View view;
         private final @NonNull
-        View loadingView;
-        private final @NonNull
         String url;
         private int errorResId;
 
-        public Builder(View view, View loadingView, String url) {
+        public Builder(View view, String url) {
             this.view = view;
-            this.loadingView = loadingView;
             this.url = url;
             this.errorResId = 0;
         }
 
-        public Builder seterrorResId(int errorResId) {
+        public Builder setErrorResId(int errorResId) {
             this.errorResId = errorResId;
             return this;
         }

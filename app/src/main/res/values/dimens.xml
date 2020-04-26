@@ -6,7 +6,4 @@
     <dimen name="main_loading_view_margin_bottom">10dp</dimen>
 
     <dimen name="view_type_default_height">130dp</dimen>
-
-    <dimen name="item_loading_view_width">40dp</dimen>
-    <dimen name="item_loading_view_height">40dp</dimen>
 </resources>

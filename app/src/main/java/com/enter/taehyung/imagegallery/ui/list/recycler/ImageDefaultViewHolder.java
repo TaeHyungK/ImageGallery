@@ -25,8 +25,6 @@ public class ImageDefaultViewHolder extends MainBaseViewHolder {
     protected ConstraintLayout mRootLayout;
     @BindView(R.id.i_list_default_image_view)
     protected ImageView mImageView;
-    @BindView(R.id.i_list_default_loading_view)
-    protected View mLoadingView;
 
     public ImageDefaultViewHolder(@NonNull View itemView, ImageContract.Presenter presenter) {
         super(itemView);
@@ -41,9 +39,8 @@ public class ImageDefaultViewHolder extends MainBaseViewHolder {
             ImageData data = (ImageData) obj;
             Log.d(TAG, "bind() called." + pos + " | " + data.getTitle() + " | " + data.getImagePath());
 
-            mLoadingView.setBackgroundResource(R.drawable.loading_icon);
-            final ImageRequest req = new ImageRequest.Builder(mImageView, mLoadingView, data.getImagePath())
-                    .seterrorResId(R.drawable.default_no_image)
+            final ImageRequest req = new ImageRequest.Builder(mImageView, data.getImagePath())
+                    .setErrorResId(R.drawable.default_no_image)
                     .build();
             ImageLoader.loadImage(req);
 

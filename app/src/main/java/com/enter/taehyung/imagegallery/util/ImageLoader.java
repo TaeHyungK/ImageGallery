@@ -36,7 +36,7 @@ public class ImageLoader {
             return;
         }
 
-        RequestBuilder request = Glide.with(info.view.getContext()).load(info.url);
+        RequestBuilder request = Glide.with(info.view.getContext()).load(info.url).thumbnail(0.2f);
         RequestOptions options = new RequestOptions();
 
         if (info.errorResId != 0) {
@@ -45,29 +45,18 @@ public class ImageLoader {
 
         Log.d(TAG, "loadImage() called. url: " + info.url);
 
-        info.loadingView.setVisibility(View.VISIBLE);
-        ValueAnimator loadingAnimator = AnimatorUtil.getInstance().makeRotationAnimator(info.loadingView, 500, 0, 360);
-        loadingAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        loadingAnimator.setRepeatMode(ValueAnimator.RESTART);
-        loadingAnimator.start();
-
         request.listener(new RequestListener() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target
                     , boolean isFirstResource) {
-                info.loadingView.setVisibility(View.GONE);
-                loadingAnimator.cancel();
-
+                Log.d(TAG, "onLoadFailed() called.");
                 return false;
             }
 
             @Override
             public boolean onResourceReady(Object resource, Object model, Target target
                     , DataSource dataSource, boolean isFirstResource) {
-
-                info.loadingView.setVisibility(View.GONE);
-                loadingAnimator.cancel();
-
+                Log.d(TAG, "onResourceReady() called.");
                 return false;
             }
         });
