@@ -57,7 +57,7 @@ public class NetworkManager {
                     for (Element element : elements) {
                         ImageData data = new ImageData();
                         data.setIdx(idx++);
-                        Elements textWrapper = element.getElementsByClass("text-wrapper");
+                        Elements textWrapper = element.getElementsByClass(NetworkConst.PARSER_QUERY.IMAGE_TEXT_WRAPPER);
                         if (textWrapper != null) {
                             data.setTitle(textWrapper.text());
                         }

@@ -42,5 +42,6 @@ public class NetworkConst {
         String IMG_TAG = "img";
         String IMG_ATTR_ALT = "alt";
         String IMG_ATTR_SRC = "data-src";
+        String IMAGE_TEXT_WRAPPER = "text-wrapper";
     }
 }
