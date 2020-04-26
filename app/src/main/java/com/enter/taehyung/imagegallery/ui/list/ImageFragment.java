@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +13,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.enter.taehyung.imagegallery.Intro.IntroManager;
+import com.enter.taehyung.imagegallery.intro.IntroManager;
 import com.enter.taehyung.imagegallery.MainActivity;
 import com.enter.taehyung.imagegallery.R;
-import com.enter.taehyung.imagegallery.base.MainBaseViewHolder;
 import com.enter.taehyung.imagegallery.data.ImageData;
 import com.enter.taehyung.imagegallery.network.NetworkConst;
 import com.enter.taehyung.imagegallery.ui.list.recycler.ImageAdapter;
 import com.enter.taehyung.imagegallery.ui.list.recycler.ImageItemDecoration;
-import com.enter.taehyung.imagegallery.ui.list.recycler.ImageDefaultViewHolder;
 import com.enter.taehyung.imagegallery.util.Utils;
 
 import java.util.ArrayList;

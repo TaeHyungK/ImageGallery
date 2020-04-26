@@ -1,4 +1,4 @@
-package com.enter.taehyung.imagegallery.Intro;
+package com.enter.taehyung.imagegallery.intro;
 
 import android.util.Log;
 import android.view.View;

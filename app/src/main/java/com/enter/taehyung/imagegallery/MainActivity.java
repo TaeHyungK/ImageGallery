@@ -9,13 +9,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.enter.taehyung.imagegallery.Intro.IntroManager;
+import com.enter.taehyung.imagegallery.intro.IntroManager;
 import com.enter.taehyung.imagegallery.ui.list.ImageConst;
 import com.enter.taehyung.imagegallery.ui.list.ImageFragment;
 import com.enter.taehyung.imagegallery.util.Utils;
