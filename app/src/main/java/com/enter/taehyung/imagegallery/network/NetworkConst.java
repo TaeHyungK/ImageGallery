@@ -4,7 +4,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.StringDef;
 
 public class NetworkConst {
-    public static final int TIMEOUT_MS = 10 * 1000;
+    public static final int TIMEOUT_MS = 15 * 1000;
 
     @IntDef({
             STATUS.OK

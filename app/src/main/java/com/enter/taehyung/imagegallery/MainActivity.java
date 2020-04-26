@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()) {
                 case R.id.a_main_root:
                     if (mFragment instanceof ImageFragment) {
+                        Utils.showToast(getString(R.string.toast_network_retry));
                         ((ImageFragment) mFragment).requestData();
                         removeClickListener();
                     }
