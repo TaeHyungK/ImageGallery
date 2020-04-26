@@ -80,7 +80,7 @@ public class ImageFragment extends Fragment implements ImageContract.View{
 
         mGridLayoutManager = new GridLayoutManager(getActivity(), ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL, false);
         mStaggeredLayoutManager= new StaggeredGridLayoutManager(ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL);
-        mStaggeredLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mStaggeredLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
 
         mAdapter = new ImageAdapter(mPresenter, imageList, ImageConst.LAYOUT_TYPE.DEFAULT);
         mAdapter.setListener(mClickListener);
