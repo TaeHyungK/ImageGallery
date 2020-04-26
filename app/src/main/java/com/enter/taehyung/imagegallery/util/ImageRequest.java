@@ -14,7 +14,7 @@ public class ImageRequest {
     String url;
     public int errorResId;
 
-    public ImageRequest(Builder builder) {
+    private ImageRequest(Builder builder) {
         view = builder.view;
         url = builder.url;
         errorResId = builder.errorResId;
