@@ -3,6 +3,10 @@ package com.enter.taehyung.imagegallery.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+// FIXME Parcelable이 어떤건지 아냐고 물어봄
+//  직렬화를 해주는 애고 안드로이드에 직렬화를 해주는 클래스가 Serializable, Parcelable이 있는데
+//  파셀러블은 직렬화될 변수나 순서를 직접 정해줘서 Serializable 보다 빠르고, Serializable은 리플렉션 사용해서 더 느리다함
+//  이 데이터를 Bundle에 안담으면 굳이 Parcelable 할 필요도 없어진다고 말하심.
 public class ImageData implements Parcelable {
     private int idx; // origin sort 를 위해 저장 처리 필요.
     private String title;

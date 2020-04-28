@@ -79,6 +79,11 @@ public class ImageFragment extends Fragment implements ImageContract.View{
         IntroManager.getInstance().hideIntro();
 
         mGridLayoutManager = new GridLayoutManager(getActivity(), ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL, false);
+        // FIXME 제이든 면접관님이 코드 리뷰 하는걸 놓친 것 같다고 이거 왜 두개로 쓰냐고 물어보심
+        //  불규칙한 격자와 규칙적인 격자 둘다 노출하고 싶은 욕심이 생겨서 했다고 함.
+        //  설명하면서 불규칙한 격자 모드에서 아래로 스크롤하면 빈 부분이 생기는 이슈가 있는데 이미지 크기가 measure 되는 타이밍이 엇갈리면서 나는 이슈로 보인다고 설명드리며
+        //  추후 수정할 예정이라고 말씀드림.
+        //  -> 그냥 넘어감.
         mStaggeredLayoutManager= new StaggeredGridLayoutManager(ImageConst.SPAN_COUNT.THREE, RecyclerView.VERTICAL);
         mStaggeredLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
 

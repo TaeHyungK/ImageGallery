@@ -11,6 +11,7 @@ import java.util.Comparator;
 public class TitleComparator implements Comparator<ImageData> {
     @Override
     public int compare(ImageData o1, ImageData o2) {
+        // FIXME OriginalComparator와 동일
         return o1.getTitle().compareTo(o2.getTitle());
     }
 }

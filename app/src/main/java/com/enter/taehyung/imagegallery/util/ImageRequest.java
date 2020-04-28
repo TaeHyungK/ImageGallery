@@ -20,6 +20,7 @@ public class ImageRequest {
         errorResId = builder.errorResId;
     }
 
+    // FIXME 질문은 없었고 빌더 패턴 이용해서 좀 더 유연하게 처리하기 위해 사용했다고 설명드림.
     public static class Builder {
         private final @NonNull
         View view;
