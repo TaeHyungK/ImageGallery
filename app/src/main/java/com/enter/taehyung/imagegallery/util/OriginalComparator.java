@@ -18,6 +18,12 @@ public class OriginalComparator implements Comparator<ImageData> {
         // FIXME int랑 Integer 사이즈가 어떻게 되는지 아시나요?
         //  int는 4byte고 Integer는 정확히 모른다고 함.
         //  -> Integer는 숫자에 따라 다르기는 한데 통상 20~30byte 정도 된다고 엄청난 차이라고 설명해주심..
-        return ((Integer) o1.getIdx()).compareTo((Integer) o2.getIdx());
+//        return ((Integer) o1.getIdx()).compareTo((Integer) o2.getIdx());
+
+        if (o1.getIdx() > o2.getIdx()) {
+            // 오름차순
+            return 1;
+        }
+        return -1;
     }
 }

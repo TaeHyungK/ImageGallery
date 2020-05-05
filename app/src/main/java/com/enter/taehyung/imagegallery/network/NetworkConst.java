@@ -7,10 +7,14 @@ public class NetworkConst {
     public static final int TIMEOUT_MS = 15 * 1000;
 
     @IntDef({
-            STATUS.OK
+            STATUS.OK,
+            STATUS.FAILED,
+            STATUS.NETWORK_EXCEPTION
     })
     public @interface STATUS {
         int OK = 200;
+        int FAILED = 5000;
+        int NETWORK_EXCEPTION = 5001;
     }
 
     @StringDef({
@@ -20,13 +24,6 @@ public class NetworkConst {
     public @interface BUNDLE_KEY {
         String STATE_CODE = "STATE_CODE";
         String DATA_IMAGE_LIST = "DATA_IMAGE_LIST";
-    }
-
-    @IntDef({
-            BUNDLE_TYPE.NETWORK_EXCEPTION
-    })
-    public @interface BUNDLE_TYPE {
-        int NETWORK_EXCEPTION = 5000;
     }
 
     @StringDef({

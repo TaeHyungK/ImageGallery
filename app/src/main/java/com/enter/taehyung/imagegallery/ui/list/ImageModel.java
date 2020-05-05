@@ -24,11 +24,22 @@ public class ImageModel {
      * 이미지 데이터 크롤링 요청
      */
     public void requestData() {
-        NetworkManager networkManager = NetworkManager.getInstance();
-        networkManager.requestData(mNetworkListener);
+//        NetworkManager.requestData(mNetworkListener);
+        NetworkManager.requestAsyncData(mNetworkListener);
+
     }
 
     private NetworkListener mNetworkListener = new NetworkListener() {
+        @Override
+        public void onResult(int state, ArrayList<ImageData> list) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    mPresenter.setImageList(state, list);
+                }
+            });
+        }
+
         @Override
         public void onResult(Bundle bundle) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {

@@ -1,5 +1,6 @@
 package com.enter.taehyung.imagegallery.network;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,26 +19,26 @@ public class NetworkManager {
 
     private static final String TARGET_URL = "http://www.gettyimagesgallery.com/collection/sasha/";
 
-    private NetworkManager() {
-
-    }
+//    private NetworkManager() {
+//
+//    }
 
     // FIXME 굳이 싱글턴이 아니여도 그냥 아래 메소드를 static 메소드로 사용하면 될 것 같다 함
     //  아마 객체를 생성하면서 메모리를 더 잡아먹어서 그런 듯?
-    public static NetworkManager getInstance() {
-        return LazyHolder.INSTANCE;
-    }
+//    public static NetworkManager getInstance() {
+//        return LazyHolder.INSTANCE;
+//    }
 
-    private static class LazyHolder {
-        public static final NetworkManager INSTANCE = new NetworkManager();
-    }
+//    private static class LazyHolder {
+//        public static final NetworkManager INSTANCE = new NetworkManager();
+//    }
 
     /**
      * Jsoup을 통해 이미지 데이터 크롤링
      *
      * @param listener NetworkListener
      */
-    public void requestData(NetworkListener listener) {
+    public static void requestData(NetworkListener listener) {
         // FIXME 평소에서 스레드를 이렇게 쓰냐고 이거 엄청 위험하다고 함.
         //  Thread 자원이 안드로이드에서 가벼운 자원일까요? 무거운 자원일까요? 부터 하나하나 깜..
         //  매우 무거운 자원이며 평소에는 이렇게 쓰지 않고 Handler 로 사용한다고 함 (-> 잘못 말한듯.. 면접 끝나고 생각났는데 AsyncTask 써야할 듯..)
@@ -95,10 +96,77 @@ public class NetworkManager {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    bundle.putInt(NetworkConst.BUNDLE_KEY.STATE_CODE, NetworkConst.BUNDLE_TYPE.NETWORK_EXCEPTION);
+                    bundle.putInt(NetworkConst.BUNDLE_KEY.STATE_CODE, NetworkConst.STATUS.NETWORK_EXCEPTION);
                     listener.onResult(bundle);
                 }
             }
         }.start();
+    }
+
+    /**
+     * Refactoring.
+     * Jsoup을 통해 이미지 데이터 크롤링
+     *
+     * @param listener NetworkListener
+     */
+    public static void requestAsyncData(NetworkListener listener) {
+        JsoupTask jsoupTask = new JsoupTask();
+        jsoupTask.execute(listener);
+    }
+
+    private static class JsoupTask extends AsyncTask<NetworkListener, Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // 실행전 정리 동작.
+        }
+
+        @Override
+        protected Void doInBackground(NetworkListener... listeners) {
+            int state = NetworkConst.STATUS.FAILED;
+            ArrayList<ImageData> imageList = new ArrayList<>();
+            NetworkListener listener = listeners[0];
+
+            try {
+                Connection.Response response = Jsoup.connect(TARGET_URL).timeout(NetworkConst.TIMEOUT_MS).execute();
+
+                if (response.statusCode() != NetworkConst.STATUS.OK) {
+                    Log.d(TAG, "getHtmlData() status is not OK.");
+                    listener.onResult(state, imageList);
+                    return null;
+                }
+                state = NetworkConst.STATUS.OK;
+
+                Document doc = response.parse();
+                Elements elements = doc.select(NetworkConst.PARSER_QUERY.DIV_PARENT).select(NetworkConst.PARSER_QUERY.DIV_CHILD);
+
+                int idx = 0;
+                for (Element element : elements) {
+                    ImageData data = new ImageData();
+                    data.setIdx(idx++);
+                    Elements textWrapper = element.getElementsByClass(NetworkConst.PARSER_QUERY.IMAGE_TEXT_WRAPPER);
+                    if (textWrapper != null) {
+                        data.setTitle(textWrapper.text());
+                    }
+                    data.setImagePath(element.select(NetworkConst.PARSER_QUERY.IMG_TAG).attr(NetworkConst.PARSER_QUERY.IMG_ATTR_SRC));
+
+                    imageList.add(data);
+                }
+
+                listener.onResult(state, imageList);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                listener.onResult(state, imageList);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            // 비동기 처리 완료 후 동작.
+        }
     }
 }
